@@ -1,13 +1,14 @@
 ﻿using ClassRoom.Models.Db;
+using Microsoft.EntityFrameworkCore;
 
 namespace ClassRoom.Repositories
 {
-    public class RepositoryBase
+    public class RepositoryBase<TDbEntity> where TDbEntity: class
     {
-        protected ClassRoomContext _context;
+        protected DbSet<TDbEntity> set;
         public RepositoryBase(ClassRoomContext context)
         {
-            _context = context;
+            set = context.Set<TDbEntity>();
         }
     }
 }

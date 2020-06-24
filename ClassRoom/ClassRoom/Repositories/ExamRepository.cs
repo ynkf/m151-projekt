@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace ClassRoom.Repositories
 {
-    public class ExamRepository : RepositoryBase, IExamRepository
+    public class ExamRepository : RepositoryBase<Exam>, IExamRepository
     {
         public ExamRepository(ClassRoomContext context) : base(context)
         {
@@ -14,12 +14,12 @@ namespace ClassRoom.Repositories
 
         public Exam GetExam(int examId)
         {
-            return _context.Exam.First(e => e.Id == examId);
+            return set.First(e => e.Id == examId);
         }
 
         public List<Exam> GetExames(Teacher teacher)
         {
-            return _context.Exam.Where(e =>
+            return set.Where(e =>
                 teacher.Classes
                     .Select(c => c.Id)
                     .Contains(e.ClassId))
@@ -28,7 +28,7 @@ namespace ClassRoom.Repositories
 
         public List<Exam> GetExames(ClassStudent classStudent)
         {
-            return _context.Exam.Where(e => e.ClassId == classStudent.ClassId).ToList();
+            return set.Where(e => e.ClassId == classStudent.ClassId).ToList();
         }
     }
 }

@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace ClassRoom.Repositories
 {
-    public class UserRepository : RepositoryBase, IUserRepository
+    public class UserRepository : RepositoryBase<User>, IUserRepository
     {
         public UserRepository(ClassRoomContext context) : base(context)
         {
@@ -13,7 +13,7 @@ namespace ClassRoom.Repositories
 
         public bool Login(LoginModel login)
         {
-            var result = _context.User.FirstOrDefault(u => 
+            var result = set.FirstOrDefault(u => 
                 u.Email == login.Email 
                 && u.Password == login.Password);
 
