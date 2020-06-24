@@ -6,12 +6,10 @@ using System.Linq;
 
 namespace ClassRoom.Repositories
 {
-    public class ExamRepository : IExamRepository
+    public class ExamRepository : RepositoryBase, IExamRepository
     {
-        private ClassRoomContext _context;
-        public ExamRepository(ClassRoomContext context)
+        public ExamRepository(ClassRoomContext context) : base(context)
         {
-            _context = context;
         }
 
         public Exam GetExam(int examId)

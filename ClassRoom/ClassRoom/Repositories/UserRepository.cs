@@ -5,12 +5,10 @@ using System.Linq;
 
 namespace ClassRoom.Repositories
 {
-    public class UserRepository : IUserRepository
+    public class UserRepository : RepositoryBase, IUserRepository
     {
-        private ClassRoomContext _context;
-        public UserRepository(ClassRoomContext context)
+        public UserRepository(ClassRoomContext context) : base(context)
         {
-            _context = context;
         }
 
         public bool Login(LoginModel login)
