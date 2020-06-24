@@ -4,13 +4,11 @@ using ClassRoom.Repositories;
 using ClassRoom.Repositories.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
 
 namespace ClassRoom
 {
@@ -36,9 +34,12 @@ namespace ClassRoom
             services.AddDbContext<ClassRoomContext>(opt => 
                 opt.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddAutoMapper(typeof(ClassRoomMappingProfile));
+            services.AddControllers().AddNewtonsoftJson(opt =>
+                opt.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IExamRepository, ExamRepository>();
+            services.AddScoped<IStudentRepository, StudentRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
