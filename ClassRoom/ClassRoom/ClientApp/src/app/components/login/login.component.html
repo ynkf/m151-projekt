@@ -1,0 +1,10 @@
+<div class="border rounded-lg">
+  <div class="input-group mb-3">
+    <input type="email" class="form-control" placeholder="Email" [(ngModel)]="loginData.email">
+  </div>
+  <div class="input-group mb-3">
+    <input type="password" class="form-control" placeholder="Password" [(ngModel)]="loginData.password">
+  </div>
+  <button class="btn btn-primary mb-2 float-right" (click)="login()">Login</button>
+</div>
+
