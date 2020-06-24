@@ -1,7 +1,9 @@
+import { UnSubscribable } from './../../base-classes/unsubscribable';
 import { ErrorService } from './../../services/error.service';
 import { TextConstantService } from './../../services/textConstant.service';
 import { LoginModel } from './../../models/login.model';
 import { LoginService } from './../../services/login.service';
+import { takeUntil, catchError } from 'rxjs/operators';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -10,7 +12,7 @@ import { Router } from '@angular/router';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent extends UnSubscribable {
 
   loginData: LoginModel;
   errors: string[];
@@ -21,6 +23,7 @@ export class LoginComponent {
     private errorService: ErrorService,
     private textConstantService: TextConstantService
   ) {
+    super();
     this.loginData = new LoginModel();
   }
 
@@ -29,6 +32,7 @@ export class LoginComponent {
 
     this.loginService
       .login(this.loginData)
+      .pipe(takeUntil(this.compUnsubscribe$))
       .subscribe(isAuthorized => {
         if (isAuthorized) {
           this.router.navigate(['home']);
