@@ -1,0 +1,15 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Test</th>
+      <th scope="col">Beschreibung</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let exam of exams">
+      <th scope="row"><a routerLink="exam/{{exam.id}}">{{exam?.title}}</a></th>
+      <td>{{exam?.description}}</td>
+    </tr>
+  </tbody>
+</table>
+<button class="btn btn-primary" (click)="navigateBack()">Back</button>

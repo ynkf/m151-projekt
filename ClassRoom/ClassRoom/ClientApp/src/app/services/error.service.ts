@@ -7,7 +7,9 @@ import { Subject } from 'rxjs';
 export class ErrorService {
 
   errors$ = new Subject<string[]>();
+  success$ = new Subject<string[]>();
   private errors: string[];
+  private success: string[];
 
   constructor() { }
 
@@ -16,8 +18,23 @@ export class ErrorService {
     this.errors$.next(this.errors);
   }
 
+  showSuccess(success: string) {
+    this.success.push(success);
+    this.success$.next(this.success);
+  }
+
   clearErrors() {
     this.errors = [];
     this.errors$.next(this.errors);
+  }
+
+  clearSuccess() {
+    this.success = [];
+    this.success$.next(this.success);
+  }
+
+  clearAll() {
+    this.clearErrors();
+    this.clearSuccess();
   }
 }

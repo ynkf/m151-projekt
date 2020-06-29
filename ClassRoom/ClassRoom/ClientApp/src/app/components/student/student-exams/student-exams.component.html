@@ -1,0 +1,16 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Test</th>
+      <th scope="col">Beschreibung</th>
+      <th scope="col">Note</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let studentExam of studentExams">
+      <th scope="row">{{studentExam?.exam?.title}}</th>
+      <td>{{studentExam?.exam?.description}}</td>
+      <td>{{studentExam?.student?.mark}}</td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,15 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Klasse</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let classModel of classes; let i = index">
+      <th scope="row">{{i+1}}</th>
+      <td><a routerLink="class/{{classModel.id}}">{{classModel?.name}}</a></td>
+    </tr>
+  </tbody>
+</table>
+

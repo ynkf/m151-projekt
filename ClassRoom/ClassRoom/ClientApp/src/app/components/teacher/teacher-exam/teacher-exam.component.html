@@ -1,0 +1,24 @@
+<app-error></app-error>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Schüler</th>
+      <th scope="col">Note</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let student of students">
+      <th scope="row">{{student?.lastName}} {{student?.firstName}}</th>
+      <td><input type="number" min="1" max="6" [(ngModel)]="student.mark"></td>
+    </tr>
+  </tbody>
+</table>
+
+<div style="display: inline;">
+  <button class="btn btn-secondary" (click)="navigateBack()">Back</button>
+  <div style="padding-left: 5px;">
+    <button class="btn btn-primary" (click)="save()">Save</button>
+  </div>
+</div>
+
+

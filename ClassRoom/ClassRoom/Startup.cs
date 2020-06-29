@@ -40,6 +40,8 @@ namespace ClassRoom
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IExamRepository, ExamRepository>();
             services.AddScoped<IStudentRepository, StudentRepository>();
+            services.AddScoped<ITeacherRepository, TeacherRepository>();
+            services.AddScoped<IClassRepository, ClassRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

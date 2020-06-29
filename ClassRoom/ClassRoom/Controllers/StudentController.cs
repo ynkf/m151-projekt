@@ -21,7 +21,7 @@ namespace ClassRoom.Controllers
         [HttpGet("student/{userId}")]
         public ActionResult GetStudent(int userId)
         {
-            var res = _mapper.Map<Student, StudentTransferModel>(_repository.GetStudent(userId));
+            var res = _mapper.Map<Student, UserTransferModel>(_repository.GetStudent(userId));
 
             return Content(JsonConvert.SerializeObject(res));
         }

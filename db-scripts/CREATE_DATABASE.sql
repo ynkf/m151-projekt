@@ -27,6 +27,7 @@ CREATE TABLE [Teacher] (
 CREATE TABLE [Class] (
 	ID int IDENTITY(0,1), 
 	TeacherID int NOT NULL,
+	Name varchar(100) NOT NULL,
 	CONSTRAINT PK_Class PRIMARY KEY (ID),
 	CONSTRAINT FK_Class_Teacher FOREIGN KEY (TeacherID) REFERENCES [Teacher](ID) ON DELETE CASCADE
 );

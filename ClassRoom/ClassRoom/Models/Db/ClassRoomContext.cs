@@ -31,6 +31,11 @@ namespace ClassRoom.Models.Db
 
                 entity.Property(e => e.TeacherId).HasColumnName("TeacherID");
 
+                entity.Property(e => e.Name)
+                    .IsRequired()
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
                 entity.HasOne(d => d.Teacher)
                     .WithMany(p => p.Classes)
                     .HasForeignKey(d => d.TeacherId)

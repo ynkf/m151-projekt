@@ -1,9 +1,10 @@
 ﻿using ClassRoom.Models;
+using ClassRoom.Models.TransferModels;
 
 namespace ClassRoom.Repositories.Interfaces
 {
     public interface IUserRepository
     {
-        bool Login(LoginModel login);
+        UserTransferModel Login(LoginModel login);
     }
 }

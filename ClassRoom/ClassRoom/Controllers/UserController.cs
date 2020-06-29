@@ -1,22 +1,43 @@
-﻿using ClassRoom.Models;
+﻿using AutoMapper;
+using ClassRoom.Models;
+using ClassRoom.Models.Db;
+using ClassRoom.Models.TransferModels;
 using ClassRoom.Repositories.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Internal;
 
 namespace ClassRoom.Controllers
 {
     public class UserController : ClassRoomControllerBase
     {
-        private readonly IUserRepository _repository;
+        private readonly IMapper _mapper;
+        private readonly IUserRepository _userRepository;
+        private readonly IStudentRepository _studentRepository;
+        private readonly ITeacherRepository _teacherRepository;
 
-        public UserController(IUserRepository repository)
-        {
-            _repository = repository;
+        public UserController(
+            IMapper mapper,
+            IUserRepository userRepository,
+            IStudentRepository studentRepository,
+            ITeacherRepository teacherRepository
+        ) {
+            _mapper = mapper;
+            _userRepository = userRepository;
+            _studentRepository = studentRepository;
+            _teacherRepository = teacherRepository;
         }
 
         [HttpPost("user/login")]
         public ActionResult Login(LoginModel login)
         {
-            return Ok(_repository.Login(login));
+            var userTransferModel = _userRepository.Login(login);
+
+            if (userTransferModel == null)
+            {
+                return NoContent();
+            }
+
+            return Ok(userTransferModel);
         }
     }
 }

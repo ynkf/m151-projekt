@@ -8,10 +8,12 @@ import { Component, OnInit } from '@angular/core';
 export class ErrorComponent implements OnInit {
 
   errors: string[];
+  success: string[];
 
   constructor(private errorService: ErrorService) { }
 
   ngOnInit() {
     this.errorService.errors$.subscribe(errors => this.errors = errors);
+    this.errorService.success$.subscribe(success => this.success = success);
   }
 }
